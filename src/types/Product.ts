@@ -3,7 +3,7 @@ interface Product {
   name: string;
   mainImage: string;
   description: string;
-  spaceCategory: string;
+  spaceCategory: '서울' | '강원' | '부산' | '대구' | '제주';
   price: number;
   maximumPurchases: number;
   registrationDate: string;
