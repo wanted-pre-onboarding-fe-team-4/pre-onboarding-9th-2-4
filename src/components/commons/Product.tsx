@@ -35,7 +35,7 @@ const Product = ({ product }: Props) => {
         </Badge>
       </Box>
 
-      <Image rounded='xl' src={product.mainImage} />
+      <Image rounded='xl' src={product.mainImage} alt={product.description} />
 
       <Box display='flex' alignItems='center' justifyContent='space-between'>
         <Text fontWeight='bold' fontSize='2xl'>
