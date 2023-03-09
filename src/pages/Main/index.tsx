@@ -1,5 +1,6 @@
-import { Text } from '@chakra-ui/react';
+import ProductList from '@src/components/commons/ProductList';
+import dummy from '@src/dummy/travel_list.json';
 
 export const MainPage = () => {
-  return <Text>메인 페이지 입니다.</Text>;
+  return <ProductList products={dummy} />;
 };
