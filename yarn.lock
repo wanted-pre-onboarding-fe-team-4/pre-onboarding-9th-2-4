@@ -1255,6 +1255,11 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.35.0.tgz#b7569632b0b788a0ca0e438235154e45d42813a7"
   integrity sha512-JXdzbRiWclLVoD8sNUjR443VVlYqiYmDVT6rGUEIEHU5YJW0gaVZwV2xgM7D4arkvASqD0IlLUVjHiFuxaftRw==
 
+"@fontsource/noto-sans-kr@^4.5.12":
+  version "4.5.12"
+  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans-kr/-/noto-sans-kr-4.5.12.tgz#382d6cdd1928943ca15e80ca013e3b6cf5809f50"
+  integrity sha512-6LBOzXw/V4guB/nATaiUjCcPxwJNGw+ky5DK7/wsgUZvfk8etH9IlKdvjFVidpeCuMVjOdlka2+MEw4hwEHaHA==
+
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.8.tgz#03595ac2075a4dc0f191cc2131de14fbd7d410b9"
