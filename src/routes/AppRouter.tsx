@@ -3,9 +3,9 @@ import {
   Navigate,
   RouterProvider,
 } from 'react-router-dom';
-import { ReservationsPage } from '@src/pages/Reservations/\bindex';
 import { MainPage } from '@src/pages/Main';
 import { ErrorPage } from '@src/pages/Error';
+import { ReservationsPage } from '@src/pages/Reservations';
 
 export const AppRouter = () => {
   const routerInfo = createBrowserRouter([
