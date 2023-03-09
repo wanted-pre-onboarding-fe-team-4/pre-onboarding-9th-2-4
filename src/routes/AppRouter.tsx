@@ -6,7 +6,7 @@ import {
 import { DefaultLayout } from '@src/layouts/DefaultLayout';
 import { ErrorPage } from '@src/pages/Error';
 import { MainPage } from '@src/pages/Main';
-import { ReservationsPage } from '@src/pages/Reservations/\bindex';
+import { ReservationsPage } from '@src/pages/Reservations/index';
 
 export const AppRouter = () => {
   const routerInfo = createBrowserRouter([
