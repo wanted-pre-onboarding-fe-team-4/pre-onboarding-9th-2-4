@@ -2,19 +2,17 @@ import { Grid } from '@chakra-ui/react';
 import Product from './Product';
 import createResource from '@src/lib/createResource';
 import getProductList from '@src/api/getProductList';
-import { FilterValueProps } from '@src/types';
+import { ProductFilterFunction } from '@src/pages/Main';
 
 const resource = createResource(getProductList());
 
-const ProductList = ({ selectedSpace, priceFilterValue }: FilterValueProps) => {
-  const products = resource.read();
+interface ProductListProps {
+  filterFunction: ProductFilterFunction;
+}
 
-  const filteredData = products.filter(
-    (el) =>
-      el.price >= priceFilterValue[0] &&
-      el.price <= priceFilterValue[1] &&
-      (selectedSpace.includes(el.spaceCategory) || selectedSpace.length === 0)
-  );
+const ProductList = ({ filterFunction }: ProductListProps) => {
+  const products = resource.read();
+  const filteredProducts = products.filter(filterFunction);
 
   return (
     <Grid
@@ -26,7 +24,7 @@ const ProductList = ({ selectedSpace, priceFilterValue }: FilterValueProps) => {
       ]}
       gap='2rem'
     >
-      {filteredData.map((product) => (
+      {filteredProducts.map((product) => (
         <Product key={product.idx} product={product} />
       ))}
     </Grid>
