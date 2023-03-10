@@ -8,14 +8,16 @@ import {
   RangeSliderTrack,
   RangeSliderMark,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { FilterProps } from '@src/types';
 
 const spaceOptions = ['서울', '강원', '부산', '대구', '제주'];
 
-const Filter = () => {
-  const [selectedSpace, setSelectedSpace] = useState<string[]>([]);
-  const [priceFilterValue, setPriceFilterValue] = useState([0, 30000]);
-
+const Filter = ({
+  selectedSpace,
+  setSelectedSpace,
+  priceFilterValue,
+  setPriceFilterValue,
+}: FilterProps) => {
   const spaceFilter = (space: string) => {
     if (!selectedSpace.includes(space)) {
       setSelectedSpace([...selectedSpace, space]);
