@@ -1,10 +1,9 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
-import { ProductType } from '@src/types';
 
 interface CartContextType {
-  cart: ProductType[];
-  addToCart: (p: ProductType) => void;
-  removeFromCart: (p: ProductType) => void;
+  cart: number[];
+  addToCart: (p: number) => void;
+  removeFromCart: (p: number) => void;
 }
 
 const initialCartContext: CartContextType = {
@@ -20,16 +19,14 @@ export const CartContext = createContext<CartContextType>(initialCartContext);
 const initialCart = JSON.parse(localStorage.getItem('cart') || '[]');
 
 export const CartProvider = (props: React.PropsWithChildren) => {
-  const [cart, updateCart] = useState<ProductType[]>(initialCart);
+  const [cart, updateCart] = useState<number[]>(initialCart);
 
-  const addToCart = (newProduct: ProductType) => {
+  const addToCart = (newProduct: number) => {
     updateCart((cart) => [newProduct, ...cart]);
   };
 
-  const removeFromCart = (toRemove: ProductType) => {
-    updateCart((cart) =>
-      cart.filter((product) => product.idx !== toRemove.idx)
-    );
+  const removeFromCart = (toRemove: number) => {
+    updateCart((cart) => cart.filter((product) => product !== toRemove));
   };
 
   const contextValue = useMemo(
