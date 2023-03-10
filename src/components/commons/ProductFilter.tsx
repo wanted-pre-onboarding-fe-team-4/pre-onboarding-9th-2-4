@@ -63,69 +63,75 @@ export const ProductFilter = ({ setFilterFunction }: ProductFilterProps) => {
 
   return (
     <>
-      <Flex mb='10px' alignItems='center'>
-        <Text fontSize='lg' as='b' mr={10}>
+      <Flex flexDirection='column' alignItems='start'>
+        <Text fontSize='lg' as='b' mb={5}>
           지역
         </Text>
-        {spaceOptions.map((space: string) => {
-          return (
-            <Tag
-              key={space}
-              size='lg'
-              variant='solid'
-              colorScheme={selectedSpace.includes(space) ? 'teal' : 'gray'}
-              mr='3px'
-              cursor='pointer'
-              onClick={() => handleSelectedSpaceChange(space)}
-            >
-              {space}
-            </Tag>
-          );
-        })}
         <Tag
           size='lg'
+          mb={3}
           variant='solid'
           colorScheme={!isAllOption ? 'teal' : 'gray'}
-          ml='20px'
           cursor='pointer'
           onClick={allSelectButton}
         >
           전체 선택/해제
         </Tag>
+        <Flex mb='10px' alignItems='center'>
+          {spaceOptions.map((space: string) => {
+            return (
+              <Tag
+                key={space}
+                size='lg'
+                variant='solid'
+                colorScheme={selectedSpace.includes(space) ? 'teal' : 'gray'}
+                mr='3px'
+                cursor='pointer'
+                onClick={() => handleSelectedSpaceChange(space)}
+              >
+                {space}
+              </Tag>
+            );
+          })}
+        </Flex>
       </Flex>
-      <Flex my={50} alignItems='center'>
-        <Text fontSize='lg' as='b' mr={10}>
+      <Flex flexDirection='column' alignItems='start'>
+        <Text fontSize='lg' as='b' mt={10}>
           가격
         </Text>
-        <RangeSlider
-          aria-label={['min', 'max']}
-          defaultValue={initialPriceRange}
-          min={minPriceRange}
-          max={maxPriceRange}
-          step={priceStep}
-          w={300}
-          onChange={handlePriceRangeChange}
-        >
-          <RangeSliderTrack>
-            <RangeSliderFilledTrack />
-          </RangeSliderTrack>
-          <RangeSliderMark value={0} mt='1' ml='-2.5' fontSize='sm'>
-            0
-          </RangeSliderMark>
-          <RangeSliderMark value={10000} mt='1' ml='-2.5' fontSize='sm'>
-            10,000
-          </RangeSliderMark>
-          <RangeSliderMark value={20000} mt='1' ml='-2.5' fontSize='sm'>
-            20,000
-          </RangeSliderMark>
-          <RangeSliderMark value={30000} mt='1' fontSize='sm'>
-            30,000
-          </RangeSliderMark>
-          <StyledMarker value={minPrice} />
-          <StyledMarker value={maxPrice} />
-          <RangeSliderThumb index={0} border='1px solid gray' />
-          <RangeSliderThumb index={1} border='1px solid gray' />
-        </RangeSlider>
+        <Flex my={50} alignItems='center'>
+          <RangeSlider
+            aria-label={['min', 'max']}
+            defaultValue={initialPriceRange}
+            min={minPriceRange}
+            max={maxPriceRange}
+            step={priceStep}
+            minW={210}
+            ml={5}
+            mb={10}
+            onChange={handlePriceRangeChange}
+          >
+            <RangeSliderTrack>
+              <RangeSliderFilledTrack />
+            </RangeSliderTrack>
+            <RangeSliderMark value={0} mt='1' ml='-2.5' fontSize='sm'>
+              0
+            </RangeSliderMark>
+            <RangeSliderMark value={10000} mt='1' ml='-2.5' fontSize='sm'>
+              10,000
+            </RangeSliderMark>
+            <RangeSliderMark value={20000} mt='1' ml='-2.5' fontSize='sm'>
+              20,000
+            </RangeSliderMark>
+            <RangeSliderMark value={30000} mt='1' fontSize='sm'>
+              30,000
+            </RangeSliderMark>
+            <StyledMarker value={minPrice} />
+            <StyledMarker value={maxPrice} />
+            <RangeSliderThumb index={0} border='1px solid gray' />
+            <RangeSliderThumb index={1} border='1px solid gray' />
+          </RangeSlider>
+        </Flex>
       </Flex>
     </>
   );
