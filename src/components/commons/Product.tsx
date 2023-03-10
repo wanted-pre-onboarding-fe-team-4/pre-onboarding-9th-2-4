@@ -61,7 +61,7 @@ const Product = ({ product }: Props) => {
         gap='2rem'
       >
         <Box display='flex' flexDir='column' gap='1rem' alignItems='start'>
-          <AspectRatio ratio={1 / 1} width='100%'>
+          <AspectRatio position='relative' ratio={1 / 1} width='100%'>
             <Image
               width='100%'
               rounded='xl'
