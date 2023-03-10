@@ -1,4 +1,4 @@
-import { Grid, GridItem } from '@chakra-ui/react';
+import { Grid, GridItem, Flex } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
 import { Header } from '@src/layouts/units/Header';
 
@@ -14,7 +14,11 @@ export const DefaultLayout = () => {
         <Header />
       </GridItem>
       <GridItem area='main' p='20'>
-        <Outlet />
+        <Flex justifyContent='center'>
+          <div style={{ maxWidth: '1200px' }}>
+            <Outlet />
+          </div>
+        </Flex>
       </GridItem>
     </Grid>
   );
