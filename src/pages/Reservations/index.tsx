@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 import { Heading, VStack } from '@chakra-ui/react';
-import ProductLiSkeleton from '@src/components/commons/ProductSkeleton';
+import ProductLiSkeleton from '@src/components/products/ProductSkeleton';
+import { ReservationList } from '@src/components/reservation/ReservationList';
 import { useCart } from '@src/context/cart';
 import { ProductType } from '@src/types';
-import { ReservationList } from '@src/components/commons/ReservationList';
 
 export const ReservationPage = () => {
   const { cart } = useCart();

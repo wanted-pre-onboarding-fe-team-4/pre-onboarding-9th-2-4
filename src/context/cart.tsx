@@ -57,7 +57,6 @@ export const CartProvider = (props: React.PropsWithChildren) => {
     updateCart((cart) => cart.filter((product) => product.idx !== toRemove));
   };
 
-  // 영속화 수행
   useEffect(() => {
     persistCart(cart);
   }, [cart]);
