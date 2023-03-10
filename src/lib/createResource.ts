@@ -2,7 +2,7 @@ const createResource = <T>(promise: Promise<T>) => {
   let status = 'pending';
   let result: T;
 
-  const spender = promise
+  const suspender = promise
     .then((data) => {
       status = 'success';
       result = data;
@@ -14,7 +14,7 @@ const createResource = <T>(promise: Promise<T>) => {
 
   return {
     read() {
-      if (status === 'pending') throw spender;
+      if (status === 'pending') throw suspender;
       else if (status === 'error') throw result;
       else if (!result) throw new Error();
       return result;
