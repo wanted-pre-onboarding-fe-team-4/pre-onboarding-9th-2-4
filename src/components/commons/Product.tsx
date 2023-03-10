@@ -1,4 +1,5 @@
 import {
+  AspectRatio,
   Badge,
   Box,
   Button,
@@ -35,7 +36,14 @@ const Product = ({ product }: Props) => {
         </Badge>
       </Box>
 
-      <Image rounded='xl' src={product.mainImage} alt={product.description} />
+      <AspectRatio ratio={1 / 1} width='100%'>
+        <Image
+          width='100%'
+          rounded='xl'
+          src={product.mainImage}
+          alt={product.description}
+        />
+      </AspectRatio>
 
       <Box display='flex' alignItems='center' justifyContent='space-between'>
         <Text fontWeight='bold' fontSize='2xl'>
