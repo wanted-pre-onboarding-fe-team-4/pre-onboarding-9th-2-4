@@ -74,7 +74,7 @@ const Product = ({ product }: Props) => {
 
         <Box display='flex' alignItems='center' justifyContent='space-between'>
           <Text fontWeight='bold' fontSize='2xl'>
-            ₩{price}
+            {price.toLocaleString()}원
           </Text>
           <Button
             background='blue.400'
