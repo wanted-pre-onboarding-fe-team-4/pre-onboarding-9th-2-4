@@ -15,12 +15,12 @@ import {
   Image,
   Flex,
 } from '@chakra-ui/react';
-import Product from '@src/types/Product';
+import { ProductType } from '@src/types';
 
 interface DetailModalProps {
   onClose: () => void;
   isOpen: boolean;
-  detailData: Product;
+  detailData: ProductType;
 }
 
 const DetailModal = ({ onClose, isOpen, detailData }: DetailModalProps) => {

@@ -1,5 +1,5 @@
-import Product from '@src/types/Product';
+import { ProductType } from '@src/types';
 
 export interface InitialType {
-  products: Product[];
+  products: ProductType[];
 }

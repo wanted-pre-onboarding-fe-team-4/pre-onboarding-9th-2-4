@@ -1,12 +1,12 @@
-interface Product {
+interface ProductType {
   idx: number;
   name: string;
   mainImage: string;
   description: string;
-  spaceCategory: '서울' | '강원' | '부산' | '대구' | '제주';
+  spaceCategory: string;
   price: number;
   maximumPurchases: number;
   registrationDate: string;
 }
 
-export default Product;
+export default ProductType;
