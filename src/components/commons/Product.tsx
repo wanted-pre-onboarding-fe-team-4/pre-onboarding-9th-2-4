@@ -21,8 +21,9 @@ interface Props {
 const Product = ({ product }: Props) => {
   const { idx, name, spaceCategory, mainImage, description, price } = product;
   const [modalIsOpen, toggleModal] = useState(false);
-  const { addToCart } = useCart();
+  const { addToCart, cart } = useCart();
   const toast = useToast();
+  const isInCart = cart.find((i) => i.idx === product.idx);
 
   const showReservationSuccess = () => {
     toast({
@@ -34,9 +35,11 @@ const Product = ({ product }: Props) => {
   };
 
   const handleReservationClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    if (isInCart) return;
+
     addToCart(idx, price);
     showReservationSuccess();
-    e.stopPropagation();
   };
 
   const handleToggleModal = () => {
@@ -53,39 +56,51 @@ const Product = ({ product }: Props) => {
       <Card
         onClick={handleToggleModal}
         maxW='20rem'
-        p='2rem 1rem'
+        p='1rem'
         display='flex'
         flexDir='column'
-        gap='2rem'
         justifyContent='space-between'
         cursor='pointer'
+        gap='2rem'
       >
-        <Box display='flex' flexDir='column' alignItems='start' gap='0.5rem'>
+        <Box display='flex' flexDir='column' gap='1rem' alignItems='start'>
+          <AspectRatio ratio={1 / 1} width='100%'>
+            <Box width='100%' height='100%' position='relative'>
+              <Badge padding='0 0.5rem' position='absolute' top={5} left={3}>
+                {product.idx}
+              </Badge>
+              <Image
+                width='100%'
+                rounded='xl'
+                src={mainImage}
+                alt={description}
+              />
+            </Box>
+          </AspectRatio>
+
           <Heading fontSize='2xl'>{name}</Heading>
-          <Text color='gray.500'>{description}</Text>
+
           <Badge fontSize='lg' p='0 0.5rem' rounded='xl'>
             {spaceCategory}
           </Badge>
         </Box>
-
-        <AspectRatio ratio={1 / 1} width='100%'>
-          <Image width='100%' rounded='xl' src={mainImage} alt={description} />
-        </AspectRatio>
 
         <Box display='flex' alignItems='center' justifyContent='space-between'>
           <Text fontWeight='bold' fontSize='2xl'>
             {price.toLocaleString()}원
           </Text>
           <Button
-            background='blue.400'
+            background={isInCart ? 'gray.400' : 'blue.400'}
             color='white'
+            disabled={!!isInCart}
             _hover={{
-              background: 'blue.300',
+              background: isInCart ? '' : 'blue.300',
             }}
-            px='8'
+            cursor={isInCart ? 'auto' : 'pointer'}
+            px='3'
             onClick={handleReservationClick}
           >
-            예약
+            {isInCart ? '예약 완료' : '예약'}
           </Button>
         </Box>
       </Card>
