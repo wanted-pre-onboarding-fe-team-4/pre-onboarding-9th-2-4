@@ -13,11 +13,10 @@ export const ReservationPage = () => {
     (acc, cur) => acc + cur.price * cur.count,
     0
   );
-  console.log(cart.length);
 
   return (
     <>
-      {cart.length ? (
+      {cart.length !== 0 && (
         <>
           <VStack mb={20}>
             <Heading>
@@ -28,7 +27,9 @@ export const ReservationPage = () => {
             <ReservationList filterFunction={cartItemsFilter} />
           </Suspense>
         </>
-      ) : (
+      )}
+
+      {cart.length === 0 && (
         <VStack mt={40}>
           <Heading>장바구니에 아무것도 담겨있지 않습니다</Heading>
         </VStack>
