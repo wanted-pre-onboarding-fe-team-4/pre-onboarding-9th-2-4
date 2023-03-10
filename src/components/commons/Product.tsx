@@ -61,13 +61,18 @@ const Product = ({ product }: Props) => {
         gap='2rem'
       >
         <Box display='flex' flexDir='column' gap='1rem' alignItems='start'>
-          <AspectRatio position='relative' ratio={1 / 1} width='100%'>
-            <Image
-              width='100%'
-              rounded='xl'
-              src={mainImage}
-              alt={description}
-            />
+          <AspectRatio ratio={1 / 1} width='100%'>
+            <Box width='100%' height='100%' position='relative'>
+              <Badge padding='0 0.5rem' position='absolute' top={3} left={3}>
+                {product.idx}
+              </Badge>
+              <Image
+                width='100%'
+                rounded='xl'
+                src={mainImage}
+                alt={description}
+              />
+            </Box>
           </AspectRatio>
 
           <Heading fontSize='2xl'>{name}</Heading>
