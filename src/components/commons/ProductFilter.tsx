@@ -35,6 +35,7 @@ export const ProductFilter = ({ setFilterFunction }: ProductFilterProps) => {
   const [selectedSpace, setSelectedSpace] = useState<string[]>(spaceOptions);
   const [priceFilterValue, setPriceFilterValue] = useState(initialPriceRange);
   const [minPrice, maxPrice] = priceFilterValue;
+  const isAllOption = selectedSpace.length === 5;
 
   useEffect(() => {
     setFilterFunction(createFilterFunction(selectedSpace, priceFilterValue));
@@ -50,6 +51,14 @@ export const ProductFilter = ({ setFilterFunction }: ProductFilterProps) => {
 
   const handlePriceRangeChange = (newRange: number[]) => {
     setPriceFilterValue(newRange);
+  };
+
+  const allSelectButton = () => {
+    if (isAllOption) {
+      setSelectedSpace([]);
+      return;
+    }
+    setSelectedSpace(spaceOptions);
   };
 
   return (
@@ -73,6 +82,16 @@ export const ProductFilter = ({ setFilterFunction }: ProductFilterProps) => {
             </Tag>
           );
         })}
+        <Tag
+          size='lg'
+          variant='solid'
+          colorScheme={!isAllOption ? 'teal' : 'gray'}
+          ml='20px'
+          cursor='pointer'
+          onClick={allSelectButton}
+        >
+          전체 선택/해제
+        </Tag>
       </Flex>
       <Flex my={50} alignItems='center'>
         <Text fontSize='lg' as='b' mr={10}>

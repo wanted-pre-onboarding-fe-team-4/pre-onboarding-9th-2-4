@@ -1,15 +1,13 @@
 import { getProducts } from './api';
-const getProductList = async () => {
-  await new Promise((resolve) => {
-    setTimeout(resolve, 1000);
+
+const delay = (millis: number) =>
+  new Promise((resolve) => {
+    setTimeout(resolve, millis);
   });
 
-  try {
-    const data = await getProducts();
-    return data;
-  } catch (e) {
-    return null;
-  }
+const getProductList = async () => {
+  await delay(1000);
+  return getProducts();
 };
 
 export default getProductList;
