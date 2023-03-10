@@ -1,8 +1,11 @@
 import { Button, Flex, Heading, Spacer } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '@src/context/cart';
 
 export const Header = () => {
   const navigation = useNavigate();
+  const { cart } = useCart();
+
   return (
     <Flex
       alignItems='center'
@@ -24,7 +27,7 @@ export const Header = () => {
       </Heading>
       <Spacer />
       <Button onClick={() => navigation('/reservations')} colorScheme='brand'>
-        장바구니 보러가기
+        장바구니({cart.length}개 담김)
       </Button>
     </Flex>
   );
