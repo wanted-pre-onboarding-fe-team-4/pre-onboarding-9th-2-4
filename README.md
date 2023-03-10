@@ -23,27 +23,41 @@
 </table>
 
 ## 💻 실행방법 
-1. 레포지토리 클론
-
    ```bash
+   # 프로젝트 클론
    git clone "https://github.com/wanted-pre-onboarding-fe-team-4/pre-onboarding-9th-2-4.git"
-   ```
-2. 프로젝트 폴더 진입
-
-   ```bash
+  
+  # 프로젝트 폴더 진입
    cd pre-onboarding-9th-2-4
-   ```
-
-2. module 설치
-
-   ```bash
-   yarn
-   ```
-3. 앱 실행
-   ```
-   yarn dev
-   ```
+   
+  # 모듈 설치 및 실행
+   yarn && yarn dev
+  ```
+  
 ## 기능 구현
+
+
+
+
+
+https://user-images.githubusercontent.com/88178866/224345366-b2425841-ccee-4e9a-8281-7ed10b37b9d4.mov
+
+
+
+
+https://user-images.githubusercontent.com/88178866/224342291-53725575-2e4f-4ae6-96b8-1e797d1e2692.mov
+
+
+
+https://user-images.githubusercontent.com/88178866/224343344-2ed8b9b0-b0ab-4dfa-85f2-8d9998da8980.mov
+
+
+
+
+
+
+
+
 #### ✅ Assignment 1
 
 - 유저가 페이지를 처음 열었을 때 “/main”에 도착하도록 만들어주세요
@@ -107,12 +121,39 @@
 ```
 ## 🤓 Best Practice
 각자의 구현방법을 설명하고 토론했을 때 팀 안에서 이 방법이 가장 효율적이라고 판단되는 것을 정하고 그것을 팀의 `Best Practice` 로 채택해서 프로젝트에 녹였습니다.
-### 1. `React Suspense`로 데이터 로딩을 받아 `Skeleton UI` 구현
+
+### 1. `React Suspense`
+
+- Suspense를 도입하면 API 로딩 상태를 분리해 다른 컴포넌트에 위임할 수 있습니다.
+- 컴포넌트는 데이터가 동기적으로 로딩된 것처럼 선언적으로 로직을 작성할 수 있습니다.
+
+``` tsx
+// 데이터 로딩 시작
+const resource = createResource(getProductList());
+
+const ProductList = ({ filterFunction }: ProductListProps) => {
+  // 데이터 조회
+  const products = resource.read();
+
+  return (
+...
+      {filteredProducts.map((product) => (
+        <Product key={product.idx} product={product} />
+      ))}
+  );
+};
+```
+
+### 2. `Skeleton UI` 구현
+
+https://user-images.githubusercontent.com/88178866/224343789-d633aa2b-8b4c-4b15-867f-ca2b7892f1c6.mov
+
 여행 상품 리스트는 이미지가 포함되어있어 리스트가 길어질 경우를 대비해 `Skeleton UI`가 있으면 좋겠다는 의견이 있었습니다.
 
-React v18 에서 추가된 기능인 Suspense 를 이용해 `Skeleton UI`을 구현하였습니다.
+로딩 시 자연스러운 UI를 위해서 `Skeleton UI`을 구현하였습니다.
 
-- `Skeleton UI`는 Chakra UI의 Skeleton 기능을 이용해 `ProductLiSkeleton`으로 구현했습니다.
+- `Skeleton UI`는 `Chakra UI`의 `Skeleton` 기능을 이용해 `ProductLiSkeleton`으로 구현했습니다.
+
 ```tsx
 ...
 const ProductLiSkeleton = () => {
@@ -120,14 +161,7 @@ const ProductLiSkeleton = () => {
     ...
       {[...Array(10)].map((_, key) => (
         <Card
-          key={key}
-          maxW='20rem'
-          p='2rem 1rem'
-          display='flex'
-          flexDir='column'
-          gap='2rem'
-          justifyContent='space-between'
-          cursor='pointer'
+      ...
         >
           <Box display='flex' flexDir='column' alignItems='start' gap='1rem'>
             <Skeleton width='80%' height='2rem' />
@@ -161,8 +195,8 @@ export const MainPage = () => {
 ```
 
 
-### 2. 장바구니 기능구현에 `Context API` 사용
-장바구니 기능이 여러개의 페이지에서 사용함을 생각해서 Context API 로 장바구니 변수, 기능을 전역 컴포넌트에서도 사용할 수 있게했습니다.
+### 3. 장바구니 기능구현에 `Context API` 사용
+장바구니 기능이 여러개의 페이지에서 사용함을 생각해서 `Context API` 로 장바구니 변수, 기능을 전역 컴포넌트에서도 사용할 수 있게했습니다.
 ```tsx
 export const CartContext = createContext<CartContextType>(initialCartContext);
 
@@ -214,7 +248,7 @@ const handleReservationClick = (e: React.MouseEvent<HTMLButtonElement>) => {
  ...
 
 ```
-### 3. UI/UX
+### 4. UI/UX
 본 과제에서 사용자에게 가장 적합한 UI 를 고민해 보았을 때 아래와 같이 선정하였습니다.
 
 **지역필터**
@@ -228,10 +262,14 @@ const handleReservationClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 - 주요 행동이 실제로 동작했다는 피드백을 주기 위해서
 - 예약 시 성공같은 경우의 서비스 안내멘트들을 `alert` 나 `modal` 을 사용해 보여줄 경우 사용성이 방해될 것을 우려해 `toast` 로 띄우게 했습니다.
 
-### 4. 반응형 디자인 적용
-- 
+### 5. 반응형 디자인 적용
 
-### 5. `Git` 협업
+
+
+https://user-images.githubusercontent.com/88178866/224345874-8c7ca45a-d108-4f97-b624-1e07c6079625.mov
+
+
+### 6. `Git` 협업
 코드 구현은 아니지만 `Git` 관리에 부족한 팀원이 다수였습니다. 팀원 중 사전과제에 git 관리를 잘해주신 분이 계셔서 `Best Practice` 삼아 도입하였습니다.
 - Issue 작성
 - Branch, commit 컨벤션
