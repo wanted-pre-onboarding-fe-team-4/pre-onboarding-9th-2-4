@@ -40,6 +40,7 @@ export const Reservation = ({ product }: Props) => {
       description: `${name} ${count}매`,
       status: 'success',
       duration: 1500,
+      position: 'top-right',
     });
   };
 
@@ -49,6 +50,7 @@ export const Reservation = ({ product }: Props) => {
       description: name,
       status: 'info',
       duration: 1500,
+      position: 'top-right',
     });
   };
 

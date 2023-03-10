@@ -31,6 +31,7 @@ const Product = ({ product }: Props) => {
       description: name,
       status: 'success',
       duration: 1500,
+      position: 'top-right',
     });
   };
 
