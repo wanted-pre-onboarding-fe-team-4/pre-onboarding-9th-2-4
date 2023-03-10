@@ -52,6 +52,14 @@ export const ProductFilter = ({ setFilterFunction }: ProductFilterProps) => {
     setPriceFilterValue(newRange);
   };
 
+  const allSelectButton = () => {
+    if (selectedSpace.length === 5) {
+      setSelectedSpace([]);
+    } else {
+      setSelectedSpace(spaceOptions);
+    }
+  };
+
   return (
     <>
       <Flex mb='10px' alignItems='center'>
@@ -73,6 +81,16 @@ export const ProductFilter = ({ setFilterFunction }: ProductFilterProps) => {
             </Tag>
           );
         })}
+        <Tag
+          size='lg'
+          variant='solid'
+          colorScheme={selectedSpace.length !== 5 ? 'teal' : 'gray'}
+          ml='20px'
+          cursor='pointer'
+          onClick={allSelectButton}
+        >
+          전체 선택/해제
+        </Tag>
       </Flex>
       <Flex my={50} alignItems='center'>
         <Text fontSize='lg' as='b' mr={10}>
