@@ -54,7 +54,7 @@ export const Reservation = ({ product }: Props) => {
   };
 
   const handleCountChange = (count: number) => {
-    updateCount(idx, count);
+    updateCount(idx, count, price);
     showReservationChanged(count);
   };
 

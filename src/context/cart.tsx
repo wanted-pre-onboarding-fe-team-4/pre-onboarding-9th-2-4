@@ -9,12 +9,13 @@ import React, {
 interface CartItem {
   idx: number;
   count: number;
+  price: number;
 }
 
 interface CartContextType {
   cart: CartItem[];
-  addToCart: (p: number) => void;
-  updateCount: (idx: number, count: number) => void;
+  addToCart: (p: number, price: number) => void;
+  updateCount: (idx: number, count: number, price: number) => void;
   removeFromCart: (p: number) => void;
 }
 
@@ -38,17 +39,18 @@ const persistCart = (cart: CartItem[]) => {
 export const CartProvider = (props: React.PropsWithChildren) => {
   const [cart, updateCart] = useState<CartItem[]>(initialCart);
 
-  const updateCount = (newProduct: number, newCount: number) => {
+  const updateCount = (newProduct: number, newCount: number, price: number) => {
     const newCartItem = {
       idx: newProduct,
       count: newCount,
+      price,
     };
     removeFromCart(newProduct);
     updateCart((cart) => [newCartItem, ...cart]);
   };
 
-  const addToCart = (newProduct: number) => {
-    updateCount(newProduct, 1);
+  const addToCart = (newProduct: number, price: number) => {
+    updateCount(newProduct, 1, price);
   };
 
   const removeFromCart = (toRemove: number) => {
