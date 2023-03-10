@@ -50,7 +50,7 @@ const DetailModal = ({ onClose, isOpen, product }: DetailModalProps) => {
               {name}
             </Text>
             <Text fontSize='sm' color='gray.700' textAlign='right'>
-              {registrationDate}
+              {registrationDate.substring(0, 10)}
             </Text>
           </Stack>
           <Stack spacing='14px'>
@@ -60,7 +60,7 @@ const DetailModal = ({ onClose, isOpen, product }: DetailModalProps) => {
                 width={528}
                 height={300}
                 objectFit='cover'
-                alt={name + '이미지'}
+                alt={description}
               />
               <Badge
                 colorScheme='blue'
@@ -73,8 +73,8 @@ const DetailModal = ({ onClose, isOpen, product }: DetailModalProps) => {
               </Badge>
             </Box>
             <Flex direction='column'>
-              <Text fontSize='xl' color='red.700' textAlign='right' as='b'>
-                가격 {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+              <Text fontSize='xl' textAlign='right' as='b'>
+                가격 {price.toLocaleString()}원
               </Text>
               <Badge colorScheme='red' textAlign='right' ml='auto' mt='5px'>
                 최대 {maximumPurchases}장 구매 가능
