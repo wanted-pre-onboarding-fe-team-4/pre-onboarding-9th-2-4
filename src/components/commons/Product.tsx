@@ -34,7 +34,7 @@ const Product = ({ product }: Props) => {
   };
 
   const handleReservationClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    addToCart(idx);
+    addToCart(idx, price);
     showReservationSuccess();
     e.stopPropagation();
   };
