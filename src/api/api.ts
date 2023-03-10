@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ProductType } from '@src/types';
 
 export const getProducts = () =>
-  axios.get('/apiMockData.json').then(({ data }) => data);
+  axios.get<ProductType[]>('/apiMockData.json').then(({ data }) => data);
