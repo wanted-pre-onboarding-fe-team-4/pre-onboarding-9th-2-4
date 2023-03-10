@@ -53,24 +53,29 @@ const Product = ({ product }: Props) => {
       <Card
         onClick={handleToggleModal}
         maxW='20rem'
-        p='2rem 1rem'
+        p='1rem'
         display='flex'
         flexDir='column'
-        gap='2rem'
         justifyContent='space-between'
         cursor='pointer'
+        gap='2rem'
       >
-        <Box display='flex' flexDir='column' alignItems='start' gap='0.5rem'>
+        <Box display='flex' flexDir='column' gap='1rem' alignItems='start'>
+          <AspectRatio ratio={1 / 1} width='100%'>
+            <Image
+              width='100%'
+              rounded='xl'
+              src={mainImage}
+              alt={description}
+            />
+          </AspectRatio>
+
           <Heading fontSize='2xl'>{name}</Heading>
-          <Text color='gray.500'>{description}</Text>
+
           <Badge fontSize='lg' p='0 0.5rem' rounded='xl'>
             {spaceCategory}
           </Badge>
         </Box>
-
-        <AspectRatio ratio={1 / 1} width='100%'>
-          <Image width='100%' rounded='xl' src={mainImage} alt={description} />
-        </AspectRatio>
 
         <Box display='flex' alignItems='center' justifyContent='space-between'>
           <Text fontWeight='bold' fontSize='2xl'>
