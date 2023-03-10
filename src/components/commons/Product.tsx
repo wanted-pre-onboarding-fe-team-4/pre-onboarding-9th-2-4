@@ -38,7 +38,7 @@ const Product = ({ product }: Props) => {
     e.stopPropagation();
     if (isInCart) return;
 
-    addToCart(idx);
+    addToCart(idx, price);
     showReservationSuccess();
   };
 
