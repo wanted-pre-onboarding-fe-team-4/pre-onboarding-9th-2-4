@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
-import { Spinner } from '@chakra-ui/react';
 import ProductList from '@src/components/commons/ProductList';
+import ProductLiSkeleton from '@src/components/commons/ProductSkeleton';
 
 export const MainPage = () => {
   return (
-    <Suspense fallback={<Spinner />}>
+    <Suspense fallback={<ProductLiSkeleton />}>
       <ProductList />
     </Suspense>
   );
