@@ -44,11 +44,11 @@ export function TravelReserveBox({
         justifyContent='flex-end'
         onClick={(e) => e.stopPropagation()}
       >
-        <Text fontSize='xl'>총</Text>
+        <Text fontSize='lg'>총</Text>
         <NumberInput
-          size='md'
+          size='sm'
           mr={2}
-          width={100}
+          width={70}
           min={1}
           max={maximumPurchases}
           value={count}
@@ -60,10 +60,10 @@ export function TravelReserveBox({
             <NumberDecrementStepper />
           </NumberInputStepper>
         </NumberInput>
-        <Text color='#343C38' fontSize='xl'>
+        <Text color='#343C38' fontSize='lg'>
           회
         </Text>
-        <Text color='#343C38' fontSize='xl' fontWeight='bold'>
+        <Text color='#343C38' fontSize='lg' fontWeight='bold'>
           {(price * count).toLocaleString()}원
         </Text>
       </HStack>
