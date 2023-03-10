@@ -10,8 +10,8 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import DetailModal from '../DetailModal';
-import { TravelReserveBox } from './TravelReserveBox';
+import DetailModal from '../modal/DetailModal';
+import { TravelReserveBox } from './ReservationBox';
 import { ProductType } from '@src/types';
 import { useCart } from '@src/context/cart';
 
