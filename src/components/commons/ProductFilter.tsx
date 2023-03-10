@@ -18,7 +18,7 @@ const initialPriceRange = [minPriceRange, maxPriceRange];
 const priceStep = 1000;
 
 interface ProductFilterProps {
-  setFilterFunction: () => (newFunction: ProductFilterFunction) => void;
+  setFilterFunction: (newFunction: () => ProductFilterFunction) => void;
 }
 
 const createFilterFunction = (
@@ -37,8 +37,6 @@ export const ProductFilter = ({ setFilterFunction }: ProductFilterProps) => {
   const [minPrice, maxPrice] = priceFilterValue;
 
   useEffect(() => {
-    /* eslint-disable-next-line */
-    /* @ts-ignore */
     setFilterFunction(createFilterFunction(selectedSpace, priceFilterValue));
   }, [selectedSpace, priceFilterValue]);
 

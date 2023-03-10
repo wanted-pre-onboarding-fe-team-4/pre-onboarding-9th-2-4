@@ -17,8 +17,6 @@ export const MainPage = () => {
 
   return (
     <>
-      {/* eslint-disable-next-line */}
-      {/* @ts-ignore */}
       <ProductFilter setFilterFunction={setFilterFunction} />
       <Suspense fallback={<ProductLiSkeleton />}>
         <ProductList filterFunction={filterFunction} />

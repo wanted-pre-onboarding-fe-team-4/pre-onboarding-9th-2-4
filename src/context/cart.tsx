@@ -20,12 +20,9 @@ interface CartContextType {
 
 const initialCartContext: CartContextType = {
   cart: [],
-  /* eslint-disable-next-line */
-  addToCart: (p) => {},
-  /* eslint-disable-next-line */
-  updateCount: (idx, count) => {},
-  /* eslint-disable-next-line */
-  removeFromCart: (p) => {},
+  addToCart: () => undefined,
+  updateCount: () => undefined,
+  removeFromCart: () => undefined,
 };
 
 export const CartContext = createContext<CartContextType>(initialCartContext);
