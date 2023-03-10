@@ -8,6 +8,8 @@ import {
   Image,
   Text,
 } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import DetailModal from '../DetailModal';
 import { ProductType } from '@src/types';
 import { useCart } from '@src/context/cart';
 
@@ -17,50 +19,63 @@ interface Props {
 
 const Product = ({ product }: Props) => {
   const { idx, name, spaceCategory, mainImage, description, price } = product;
+  const [modalIsOpen, toggleModal] = useState(false);
   const { addToCart } = useCart();
-  const handleReservationClick = () => {
+  const handleReservationClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     addToCart(idx);
+    e.stopPropagation();
+  };
+  const handleToggleModal = () => {
+    toggleModal((status) => !status);
   };
 
   return (
-    <Card
-      maxW='20rem'
-      p='2rem 1rem'
-      display='flex'
-      flexDir='column'
-      gap='2rem'
-      justifyContent='space-between'
-      cursor='pointer'
-    >
-      <Box display='flex' flexDir='column' alignItems='start' gap='0.5rem'>
-        <Heading fontSize='2xl'>{name}</Heading>
-        <Text color='gray.500'>{description}</Text>
-        <Badge fontSize='lg' p='0 0.5rem' rounded='xl'>
-          {spaceCategory}
-        </Badge>
-      </Box>
+    <>
+      <DetailModal
+        isOpen={modalIsOpen}
+        onClose={handleToggleModal}
+        product={product}
+      />
+      <Card
+        onClick={handleToggleModal}
+        maxW='20rem'
+        p='2rem 1rem'
+        display='flex'
+        flexDir='column'
+        gap='2rem'
+        justifyContent='space-between'
+        cursor='pointer'
+      >
+        <Box display='flex' flexDir='column' alignItems='start' gap='0.5rem'>
+          <Heading fontSize='2xl'>{name}</Heading>
+          <Text color='gray.500'>{description}</Text>
+          <Badge fontSize='lg' p='0 0.5rem' rounded='xl'>
+            {spaceCategory}
+          </Badge>
+        </Box>
 
-      <AspectRatio ratio={1 / 1} width='100%'>
-        <Image width='100%' rounded='xl' src={mainImage} alt={description} />
-      </AspectRatio>
+        <AspectRatio ratio={1 / 1} width='100%'>
+          <Image width='100%' rounded='xl' src={mainImage} alt={description} />
+        </AspectRatio>
 
-      <Box display='flex' alignItems='center' justifyContent='space-between'>
-        <Text fontWeight='bold' fontSize='2xl'>
-          ₩{price}
-        </Text>
-        <Button
-          background='blue.400'
-          color='white'
-          _hover={{
-            background: 'blue.300',
-          }}
-          px='8'
-          onClick={handleReservationClick}
-        >
-          예약
-        </Button>
-      </Box>
-    </Card>
+        <Box display='flex' alignItems='center' justifyContent='space-between'>
+          <Text fontWeight='bold' fontSize='2xl'>
+            ₩{price}
+          </Text>
+          <Button
+            background='blue.400'
+            color='white'
+            _hover={{
+              background: 'blue.300',
+            }}
+            px='8'
+            onClick={handleReservationClick}
+          >
+            예약
+          </Button>
+        </Box>
+      </Card>
+    </>
   );
 };
 
