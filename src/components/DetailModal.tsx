@@ -20,10 +20,21 @@ import { ProductType } from '@src/types';
 interface DetailModalProps {
   onClose: () => void;
   isOpen: boolean;
-  detailData: ProductType;
+  product: ProductType;
 }
 
-const DetailModal = ({ onClose, isOpen, detailData }: DetailModalProps) => {
+const DetailModal = ({ onClose, isOpen, product }: DetailModalProps) => {
+  const {
+    spaceCategory,
+    name,
+    registrationDate,
+    mainImage,
+    idx,
+    price,
+    maximumPurchases,
+    description,
+  } = product;
+
   return (
     <Modal onClose={onClose} isOpen={isOpen} size='xl' scrollBehavior='inside'>
       <ModalOverlay />
@@ -33,23 +44,23 @@ const DetailModal = ({ onClose, isOpen, detailData }: DetailModalProps) => {
         <ModalBody>
           <Stack spacing='4px' mb='10px'>
             <Text fontSize='sm' as='b' color='gray.500'>
-              대한민국 &gt; {detailData?.spaceCategory}
+              대한민국 &gt; {spaceCategory}
             </Text>
             <Text fontSize='xl' as='b'>
-              {detailData?.name}
+              {name}
             </Text>
             <Text fontSize='sm' color='gray.700' textAlign='right'>
-              {detailData?.registrationDate}
+              {registrationDate}
             </Text>
           </Stack>
           <Stack spacing='14px'>
             <Box position='relative'>
               <Image
-                src={detailData?.mainImage}
+                src={mainImage}
                 width={528}
                 height={300}
                 objectFit='cover'
-                alt={detailData?.name + '이미지'}
+                alt={name + '이미지'}
               />
               <Badge
                 colorScheme='blue'
@@ -58,23 +69,19 @@ const DetailModal = ({ onClose, isOpen, detailData }: DetailModalProps) => {
                 left='15px'
                 fontSize='16px'
               >
-                #{detailData?.idx}
+                #{idx}
               </Badge>
             </Box>
             <Flex direction='column'>
               <Text fontSize='xl' color='red.700' textAlign='right' as='b'>
-                가격{' '}
-                {detailData?.price
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                원
+                가격 {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
               </Text>
               <Badge colorScheme='red' textAlign='right' ml='auto' mt='5px'>
-                최대 {detailData?.maximumPurchases}장 구매 가능
+                최대 {maximumPurchases}장 구매 가능
               </Badge>
             </Flex>
             <Divider />
-            <Text>{detailData?.description}</Text>
+            <Text>{description}</Text>
           </Stack>
         </ModalBody>
         <ModalFooter>

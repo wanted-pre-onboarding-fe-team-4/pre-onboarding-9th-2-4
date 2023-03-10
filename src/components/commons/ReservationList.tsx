@@ -1,5 +1,5 @@
 import { Grid } from '@chakra-ui/react';
-import Product from './Product';
+import { Reservation } from './Reservation';
 import createResource from '@src/lib/createResource';
 import getProductList from '@src/api/getProductList';
 import { ProductFilterFunction } from '@src/pages/Main';
@@ -10,9 +10,9 @@ interface ProductListProps {
   filterFunction: ProductFilterFunction;
 }
 
-const ProductList = ({ filterFunction }: ProductListProps) => {
+export const ReservationList = ({ filterFunction }: ProductListProps) => {
   const products = resource.read();
-  const filteredProducts = products.filter(filterFunction);
+  const filteredCarts = products.filter(filterFunction);
 
   return (
     <Grid
@@ -24,11 +24,9 @@ const ProductList = ({ filterFunction }: ProductListProps) => {
       ]}
       gap='2rem'
     >
-      {filteredProducts.map((product) => (
-        <Product key={product.idx} product={product} />
+      {filteredCarts.map((product) => (
+        <Reservation key={product.idx} product={product} />
       ))}
     </Grid>
   );
 };
-
-export default ProductList;

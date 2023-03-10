@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Card,
+  Flex,
   Heading,
   Image,
   Text,
@@ -11,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import DetailModal from '../DetailModal';
+import { TravelReserveBox } from './TravelReserveBox';
 import { ProductType } from '@src/types';
 import { useCart } from '@src/context/cart';
 
@@ -18,24 +20,47 @@ interface Props {
   product: ProductType;
 }
 
-const Product = ({ product }: Props) => {
-  const { idx, name, spaceCategory, mainImage, description, price } = product;
+export const Reservation = ({ product }: Props) => {
+  const {
+    idx,
+    name,
+    spaceCategory,
+    mainImage,
+    description,
+    price,
+    maximumPurchases,
+  } = product;
   const [modalIsOpen, toggleModal] = useState(false);
-  const { addToCart } = useCart();
+  const { cart, updateCount, removeFromCart } = useCart();
+  const currentCount = cart.find((c) => c.idx === idx)?.count || 1;
   const toast = useToast();
 
-  const showReservationSuccess = () => {
+  const showReservationChanged = (count: number) => {
     toast({
-      title: '예약이 완료되었습니다',
-      description: name,
+      title: '예약이 수정되었습니다',
+      description: `${name} ${count}매`,
       status: 'success',
       duration: 1500,
     });
   };
 
-  const handleReservationClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    addToCart(idx);
-    showReservationSuccess();
+  const showReservationCanceled = () => {
+    toast({
+      title: '예약이 취소되었습니다',
+      description: name,
+      status: 'info',
+      duration: 1500,
+    });
+  };
+
+  const handleCountChange = (count: number) => {
+    updateCount(idx, count);
+    showReservationChanged(count);
+  };
+
+  const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
+    removeFromCart(idx);
+    showReservationCanceled();
     e.stopPropagation();
   };
 
@@ -72,25 +97,18 @@ const Product = ({ product }: Props) => {
           <Image width='100%' rounded='xl' src={mainImage} alt={description} />
         </AspectRatio>
 
-        <Box display='flex' alignItems='center' justifyContent='space-between'>
-          <Text fontWeight='bold' fontSize='2xl'>
-            {price.toLocaleString()}원
-          </Text>
-          <Button
-            background='blue.400'
-            color='white'
-            _hover={{
-              background: 'blue.300',
-            }}
-            px='8'
-            onClick={handleReservationClick}
-          >
-            예약
+        <Flex flexDirection='column' gap={2}>
+          <TravelReserveBox
+            initialCount={currentCount}
+            maximumPurchases={maximumPurchases}
+            price={price}
+            onClick={handleCountChange}
+          />
+          <Button variant='outline' px='8' onClick={handleCancel}>
+            취소
           </Button>
-        </Box>
+        </Flex>
       </Card>
     </>
   );
 };
-
-export default Product;

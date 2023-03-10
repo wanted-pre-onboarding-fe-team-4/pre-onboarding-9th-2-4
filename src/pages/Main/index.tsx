@@ -1,26 +1,26 @@
 import { Suspense, useState } from 'react';
-import Filter from './Filter';
 import ProductList from '@src/components/commons/ProductList';
 import ProductLiSkeleton from '@src/components/commons/ProductSkeleton';
+import { ProductFilter } from '@src/components/commons/ProductFilter';
+import { ProductType } from '@src/types';
+
+export type ProductFilterFunction = (product: ProductType) => boolean;
+const defaultFilter = (product: ProductType) => !!product;
 
 export const MainPage = () => {
-  const [selectedSpace, setSelectedSpace] = useState<string[]>([]);
-  const [priceFilterValue, setPriceFilterValue] = useState<number[]>([
-    0, 30000,
-  ]);
+  console.log('MainPage');
+
+  // 렌더링 최적화는 나중에
+  const [filterFunction, setFilterFunction] = useState<ProductFilterFunction>(
+    () => defaultFilter
+  );
 
   return (
-    <Suspense fallback={<ProductLiSkeleton />}>
-      <Filter
-        selectedSpace={selectedSpace}
-        setSelectedSpace={setSelectedSpace}
-        priceFilterValue={priceFilterValue}
-        setPriceFilterValue={setPriceFilterValue}
-      />
-      <ProductList
-        selectedSpace={selectedSpace}
-        priceFilterValue={priceFilterValue}
-      />
-    </Suspense>
+    <>
+      <ProductFilter setFilterFunction={setFilterFunction} />
+      <Suspense fallback={<ProductLiSkeleton />}>
+        <ProductList filterFunction={filterFunction} />
+      </Suspense>
+    </>
   );
 };
