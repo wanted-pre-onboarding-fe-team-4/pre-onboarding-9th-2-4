@@ -7,6 +7,7 @@ import {
   Heading,
   Image,
   Text,
+  useToast,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import DetailModal from '../DetailModal';
@@ -21,10 +22,23 @@ const Product = ({ product }: Props) => {
   const { idx, name, spaceCategory, mainImage, description, price } = product;
   const [modalIsOpen, toggleModal] = useState(false);
   const { addToCart } = useCart();
+  const toast = useToast();
+
+  const showReservationSuccess = () => {
+    toast({
+      title: '예약이 완료되었습니다',
+      description: name,
+      status: 'success',
+      duration: 1500,
+    });
+  };
+
   const handleReservationClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     addToCart(idx);
+    showReservationSuccess();
     e.stopPropagation();
   };
+
   const handleToggleModal = () => {
     toggleModal((status) => !status);
   };
