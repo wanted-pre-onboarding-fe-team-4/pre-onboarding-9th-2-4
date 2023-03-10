@@ -16,7 +16,6 @@ const minPriceRange = 0;
 const maxPriceRange = 30000;
 const initialPriceRange = [minPriceRange, maxPriceRange];
 const priceStep = 1000;
-const isAllOption = 5;
 
 interface ProductFilterProps {
   setFilterFunction: (newFunction: () => ProductFilterFunction) => void;
@@ -36,6 +35,7 @@ export const ProductFilter = ({ setFilterFunction }: ProductFilterProps) => {
   const [selectedSpace, setSelectedSpace] = useState<string[]>(spaceOptions);
   const [priceFilterValue, setPriceFilterValue] = useState(initialPriceRange);
   const [minPrice, maxPrice] = priceFilterValue;
+  const isAllOption = selectedSpace.length === 5;
 
   useEffect(() => {
     setFilterFunction(createFilterFunction(selectedSpace, priceFilterValue));
@@ -54,7 +54,7 @@ export const ProductFilter = ({ setFilterFunction }: ProductFilterProps) => {
   };
 
   const allSelectButton = () => {
-    if (selectedSpace.length === isAllOption) {
+    if (isAllOption) {
       setSelectedSpace([]);
       return;
     }
@@ -85,7 +85,7 @@ export const ProductFilter = ({ setFilterFunction }: ProductFilterProps) => {
         <Tag
           size='lg'
           variant='solid'
-          colorScheme={selectedSpace.length !== isAllOption ? 'teal' : 'gray'}
+          colorScheme={!isAllOption ? 'teal' : 'gray'}
           ml='20px'
           cursor='pointer'
           onClick={allSelectButton}
