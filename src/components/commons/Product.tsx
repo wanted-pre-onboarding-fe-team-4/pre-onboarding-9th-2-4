@@ -21,8 +21,9 @@ interface Props {
 const Product = ({ product }: Props) => {
   const { idx, name, spaceCategory, mainImage, description, price } = product;
   const [modalIsOpen, toggleModal] = useState(false);
-  const { addToCart } = useCart();
+  const { addToCart, cart } = useCart();
   const toast = useToast();
+  const isInCart = cart.find((i) => i.idx === product.idx);
 
   const showReservationSuccess = () => {
     toast({
@@ -34,9 +35,11 @@ const Product = ({ product }: Props) => {
   };
 
   const handleReservationClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    if (isInCart) return;
+
     addToCart(idx);
     showReservationSuccess();
-    e.stopPropagation();
   };
 
   const handleToggleModal = () => {
@@ -63,7 +66,7 @@ const Product = ({ product }: Props) => {
         <Box display='flex' flexDir='column' gap='1rem' alignItems='start'>
           <AspectRatio ratio={1 / 1} width='100%'>
             <Box width='100%' height='100%' position='relative'>
-              <Badge padding='0 0.5rem' position='absolute' top={3} left={3}>
+              <Badge padding='0 0.5rem' position='absolute' top={5} left={3}>
                 {product.idx}
               </Badge>
               <Image
@@ -87,15 +90,17 @@ const Product = ({ product }: Props) => {
             {price.toLocaleString()}원
           </Text>
           <Button
-            background='blue.400'
+            background={isInCart ? 'gray.400' : 'blue.400'}
             color='white'
+            disabled={!!isInCart}
             _hover={{
-              background: 'blue.300',
+              background: isInCart ? '' : 'blue.300',
             }}
-            px='8'
+            cursor={isInCart ? 'auto' : 'pointer'}
+            px='3'
             onClick={handleReservationClick}
           >
-            예약
+            {isInCart ? '예약 완료' : '예약'}
           </Button>
         </Box>
       </Card>
