@@ -62,8 +62,12 @@ const DetailModal = ({ onClose, isOpen, detailData }: DetailModalProps) => {
               </Badge>
             </Box>
             <Flex direction='column'>
-              <Text fontSize='xl' color='red.700' textAlign='right'>
-                가격 {detailData?.price}원
+              <Text fontSize='xl' color='red.700' textAlign='right' as='b'>
+                가격{' '}
+                {detailData?.price
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                원
               </Text>
               <Badge colorScheme='red' textAlign='right' ml='auto' mt='5px'>
                 최대 {detailData?.maximumPurchases}장 구매 가능
