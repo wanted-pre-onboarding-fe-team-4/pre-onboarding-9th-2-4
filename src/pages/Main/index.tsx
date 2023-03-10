@@ -8,9 +8,6 @@ export type ProductFilterFunction = (product: ProductType) => boolean;
 const defaultFilter = (product: ProductType) => !!product;
 
 export const MainPage = () => {
-  console.log('MainPage');
-
-  // 렌더링 최적화는 나중에
   const [filterFunction, setFilterFunction] = useState<ProductFilterFunction>(
     () => defaultFilter
   );
