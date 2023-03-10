@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useMemo, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 interface CartContextType {
   cart: number[];
@@ -16,7 +22,13 @@ const initialCartContext: CartContextType = {
 
 export const CartContext = createContext<CartContextType>(initialCartContext);
 
-const initialCart = JSON.parse(localStorage.getItem('cart') || '[]');
+const CART_KEY = 'cart';
+
+const initialCart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+
+const persistCart = (cart: number[]) => {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+};
 
 export const CartProvider = (props: React.PropsWithChildren) => {
   const [cart, updateCart] = useState<number[]>(initialCart);
@@ -28,6 +40,11 @@ export const CartProvider = (props: React.PropsWithChildren) => {
   const removeFromCart = (toRemove: number) => {
     updateCart((cart) => cart.filter((product) => product !== toRemove));
   };
+
+  // 영속화 수행
+  useEffect(() => {
+    persistCart(cart);
+  }, [cart]);
 
   const contextValue = useMemo(
     () => ({
