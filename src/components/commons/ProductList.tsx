@@ -1,12 +1,13 @@
 import { Grid } from '@chakra-ui/react';
 import Product from './Product';
-import { ProductType } from '@src/types';
+import createResource from '@src/lib/createResource';
+import getProductList from '@src/api/getProductList';
 
-interface Props {
-  products: ProductType[];
-}
+const resource = createResource(getProductList());
 
-const ProductList = ({ products }: Props) => {
+const ProductList = () => {
+  const products = resource.read();
+
   return (
     <Grid
       gridTemplateColumns={[
