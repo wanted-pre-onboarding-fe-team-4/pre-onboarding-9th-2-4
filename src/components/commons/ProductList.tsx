@@ -2,11 +2,11 @@ import { Grid } from '@chakra-ui/react';
 import Product from './Product';
 import createResource from '@src/lib/createResource';
 import getProductList from '@src/api/getProductList';
-import { FilterProps } from '@src/types';
+import { FilterValueProps } from '@src/types';
 
 const resource = createResource(getProductList());
 
-const ProductList = ({ selectedSpace, priceFilterValue }: FilterProps) => {
+const ProductList = ({ selectedSpace, priceFilterValue }: FilterValueProps) => {
   const products = resource.read();
 
   const filteredData = products.filter(
