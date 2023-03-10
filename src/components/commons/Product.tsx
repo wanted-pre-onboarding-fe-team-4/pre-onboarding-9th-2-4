@@ -8,15 +8,19 @@ import {
   Image,
   Text,
 } from '@chakra-ui/react';
-import { MouseEvent } from 'react';
 import { ProductType } from '@src/types';
+import { useCart } from '@src/context/cart';
 
 interface Props {
   product: ProductType;
 }
 
 const Product = ({ product }: Props) => {
-  const onClick = (e: MouseEvent<HTMLButtonElement>) => e.stopPropagation();
+  const { idx, name, spaceCategory, mainImage, description, price } = product;
+  const { addToCart } = useCart();
+  const handleReservationClick = () => {
+    addToCart(idx);
+  };
 
   return (
     <Card
@@ -29,25 +33,20 @@ const Product = ({ product }: Props) => {
       cursor='pointer'
     >
       <Box display='flex' flexDir='column' alignItems='start' gap='0.5rem'>
-        <Heading fontSize='2xl'>{product.name}</Heading>
-        <Text color='gray.500'>{product.description}</Text>
+        <Heading fontSize='2xl'>{name}</Heading>
+        <Text color='gray.500'>{description}</Text>
         <Badge fontSize='lg' p='0 0.5rem' rounded='xl'>
-          {product.spaceCategory}
+          {spaceCategory}
         </Badge>
       </Box>
 
       <AspectRatio ratio={1 / 1} width='100%'>
-        <Image
-          width='100%'
-          rounded='xl'
-          src={product.mainImage}
-          alt={product.description}
-        />
+        <Image width='100%' rounded='xl' src={mainImage} alt={description} />
       </AspectRatio>
 
       <Box display='flex' alignItems='center' justifyContent='space-between'>
         <Text fontWeight='bold' fontSize='2xl'>
-          ₩{product.price}
+          ₩{price}
         </Text>
         <Button
           background='blue.400'
@@ -56,7 +55,7 @@ const Product = ({ product }: Props) => {
             background: 'blue.300',
           }}
           px='8'
-          onClick={onClick}
+          onClick={handleReservationClick}
         >
           예약
         </Button>
