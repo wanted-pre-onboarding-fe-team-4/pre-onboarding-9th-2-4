@@ -1,10 +1,10 @@
-# 원티드 인턴십 프론트엔드 4팀 - 1주차 과제
+# 원티드 인턴십 프론트엔드 4팀 - 2주차 과제
 ## 📖 과제 설명
-**동료학습**을 통해서 팀에서 생각한 [원티드 프리온보딩 프론트엔드 인턴십 선발 과제 - Todo App](https://github.com/walking-sunset/selection-task)의 `Best Pratice` 만들기
+**동료학습**을 통해서 팀에서 생각한 **[원티드 프리온보딩 프론트엔드 인턴십 선발 과제 - 여행상품페이지]** 의 `Best Pratice` 만들기
 - `Best Practice`란 모범사례라는 말로서, 특정 문제를 효과적으로 해결하기 위한 가장 성공적인 해결책 또는 방법론을 의미합니다.
 
 ## 🔗 배포링크
-[🔗 배포 링크 이동](https://week1-todo-app.vercel.app/)
+[🔗 배포 링크 이동](https://pre-onboarding-9th-2-4-beta.vercel.app)
 
 ## 🧑‍💻 팀원 소개
 <table>
@@ -44,270 +44,199 @@
    yarn dev
    ```
 ## 기능 구현
-### ✅ 로그인 / 회원가입
+#### ✅ Assignment 1
 
+- 유저가 페이지를 처음 열었을 때 “/main”에 도착하도록 만들어주세요
+    - main에는 여행 상품 정보 (mock JSON) 를 활용하여 여행 상품 정보를 노출해야합니다.
+      - 리스트에서 노출해야 하는 정보: `idx, name, mainImage, price, spaceCategory`
+    - 예약 버튼을 달아 예약 버튼을 클릭시 여행 상품 장바구니에서 사용 할 수 있도록 상품 데이터
+를 저장해주세요.
+    - 여행 상품 정보를 클릭했을 때 여행 상품을 자세히 볼 수 있는 모달창을 제작해주세요
+      - 모달에서 노출해야 하는 정보: `idx, name, mainImage, description, spaceCategory, price, maximumPurchases, registrationDate`
 
-- `/signup` 경로에 회원가입 기능을 개발해주세요
-- `/signin` 경로에 로그인 기능을 개발해주세요
-- 페이지 안에 이메일 input, 비밀번호 input, 제출 button이 포함된 형태로 구성해주세요
-- 두 페이지의 UI는 동일해도 무방합니다.
+#### ✅ Assignment 2
 
-#### Assignment 1
+- 여행 상품 리스트의 가격(price), 공간(spaceCategory) 필터 기능을 만들어주세요.
+  - 개별 필터링과, 다중 필터링이 모두 가능하도록 구현해주세요
 
-- 회원가입과 로그인 페이지에 이메일과 비밀번호의 유효성 검사기능을 구현해주세요
+#### ✅ Assignment 3
 
-  - 이메일 조건: `@` 포함
-  - 비밀번호 조건: 8자 이상
-  - 이메일과 비밀번호의 유효성 검사 조건은 별도의 추가 조건 부여 없이 위의 조건대로만 진행해주세요 (e.g. 비밀번호 유효성 검사에 특수문자 포함 등의 새로운 조건을 추가하는 행위를 지양해주세요)
-
-- 입력된 이메일과 비밀번호가 유효성 검사를 통과하지 못한다면 button에 `disabled` 속성을 부여해주세요
-- 보안 상 실제 사용하고 계신 이메일과 패스워드말고 테스트용 이메일, 패스워드 사용을 권장드립니다.
-
-#### Assignment 2
-
-- 회원가입 페이지에서 버튼을 클릭 시 회원가입을 진행하고 회원가입이 정상적으로 완료되었을 시 `/signin` 경로로 이동해주세요
-
-#### Assignment 3
-
-- 로그인 페이지에서 버튼을 클릭 시, 로그인을 진행하고 로그인이 정상적으로 완료되었을 시 `/todo` 경로로 이동해주세요
-
-  - 로그인 API는 로그인이 성공했을 시 Response Body에 JWT를 포함해서 응답합니다.
-  - 응답받은 JWT는 로컬 스토리지에 저장해주세요
-
-#### Assignment 4
-
-- 로그인 여부에 따른 리다이렉트 처리를 구현해주세요
-
-  - 로컬 스토리지에 토큰이 있는 상태로 `/signin` 또는 `/signup` 페이지에 접속한다면 `/todo` 경로로 리다이렉트 시켜주세요
-  - 로컬 스토리지에 토큰이 없는 상태로 `/todo`페이지에 접속한다면 `/signin` 경로로 리다이렉트 시켜주세요
-### ✅ TODO LIST
-
-#### Assignment 5
-
-- `/todo`경로에 접속하면 투두 리스트의 목록을 볼 수 있도록 해주세요
-- 목록에서는 TODO의 내용과 완료 여부가 표시되어야 합니다.
-- TODO의 완료 여부는 `<input type="checkbox" />`를 통해 표현해주세요
-- TODO는 `<li>` tag를 이용해 감싸주세요
-
-#### Assignment 6
-
-- 리스트 페이지에 새로운 TODO를 입력할 수 있는 input과 추가 button을 만들어주세요
-- 추가 button을 클릭하면 입력 input의 내용이 새로운 TODO로 추가되도록 해주세요
-
-#### Assignment 7
-
-- TODO의 체크박스를 통해 완료 여부를 수정할 수 있도록 해주세요.
-
-#### Assignment 8
-
-- TODO 우측에 수정버튼과 삭제 버튼을 만들어주세요
-
-#### Assignment 9
-
-- 투두 리스트의 삭제 기능을 구현해주세요
-
-  - 투두 리스트의 TODO 우측의 삭제버튼을 누르면 해당 아이템이 삭제되도록 해주세요
-
-#### Assignment 10
-
-- 투두 리스트의 수정 기능을 구현해주세요
-
-  - TODO 우측의 수정 버튼을 누르면 수정모드가 활성화 되도록 해주세요
-  - 수정모드에서는 TODO의 내용을 변경할 수 있어야 합니다.
-  - 수정모드에서는 TODO의 내용이 input창 안에 입력된 형태로 변경해주세요
-  - 수정모드에서는 TODO의 우측에 제출버튼과 취소버튼이 표시되게 해주세요
-  - 제출버튼을 누르면 수정한 내용을 제출해서 내용이 업데이트 될 수 있도록 해주세요
-  - 취소버튼을 누르면 수정한 내용을 초기화 하고, 수정모드를 비활성화 해주세요
+- 여행 상품 장바구니 (/reservations)를 만들어주세요.
+  - 저장한 여행 상품의 리스트를 보여주고 삭제가 가능할 수 있도록 구성해주세요.
+  - 여행 상품의 구매 수량을 변경 가능할 수 있도록 해주세요.
+  - 장바구니에 있는 여행 상품의 총 결제액 수를 계산하여 표시해주세요
 
 ## 📦 폴더구조
 ```
 📦 src
+├── 📄 App.tsx
+├── 📄 main.tsx
 ├── 📂 api
-│   ├── 📄 index.ts
-│   ├── 📄 signInApi.ts
-│   └── 📄 signUpApi.ts
+│   ├── 📄 api.ts
+│   └── 📄 getProductList.ts
 ├── 📂 components
-│   ├── 📂 Layouts
-│   └── 📂 commons // 공통 버튼 등 공통 컴포넌트
+│   ├── 📄 DetailModal.tsx
+│   └── 📂 commons
+│       ├── Product.tsx
+│       ├── ProductFilter.tsx
+│       ├── ProductList.tsx
+│       ├── ProductSkeleton.tsx
+│       ├── Reservation.tsx
+│       ├── ReservationList.tsx
+│       ├── TravelReserveBox.tsx
+│       ├── index.ts
+│       └── styles
+│           └── Theme.ts
 ├── 📂 context
-│   └── 📄 TodoContext.tsx
-├── 📂 hooks
-│   ├── 📄 index.tsx
-│   ├── 📄 useLoggedIn.tsx
-│   └── 📄 useQuery.tsx
+│   └── 📄 cart.tsx
+├── 📂 layouts
+│   ├── 📄 DefaultLayout.tsx
+│   └── 📂 units
+│       └── 📄 Header.tsx
+├── 📂 lib
 ├── 📂 pages
-│   ├── 📄 NotFound.tsx
-│   ├── 📂 SignIn
-│   │   ├── 📄 index.tsx
-│   │   └── 📄 style.tsx
-│   ├── 📂 SignUp
-│   │   ├── 📄 index.tsx
-│   │   └── 📄 style.tsx
-│   └── 📂 Todo
-│       ├── 📄 index.tsx
-│       ├── 📄 style.tsx
-│       ├── 📄 todo.tsx
-│       └── 📄 todoListItem.tsx
-└── 📂 types
+│   ├── 📂 Error
+│   │   └── 📄 index.tsx
+│   ├── 📂 Main
+│   │   └── 📄 index.tsx
+│   └── 📂 Reservations
+│       └── 📄 index.tsx
+├── 📂 routes
+│   └── 📄 AppRouter.tsx
+└─── 📂 types
 ```
 ## 🤓 Best Practice
 각자의 구현방법을 설명하고 토론했을 때 팀 안에서 이 방법이 가장 효율적이라고 판단되는 것을 정하고 그것을 팀의 `Best Practice` 로 채택해서 프로젝트에 녹였습니다.
-### 1. `Git` 관리
-코드 구현은 아니지만 git 관리에 부족한 팀원이 다수였습니다. 팀원 중 사전과제에 git 관리를 잘해주신 분이 계셔서 `Best Practice` 삼아 도입하였습니다.
+### 1. `React Suspense`로 데이터 로딩을 받아 `Skeleton UI` 구현
+여행 상품 리스트는 이미지가 포함되어있어 리스트가 길어질 경우를 대비해 `Skeleton UI`가 있으면 좋겠다는 의견이 있었습니다.
+
+React v18 에서 추가된 기능인 Suspense 를 이용해 `Skeleton UI`을 구현하였습니다.
+
+- `Skeleton UI`는 Chakra UI의 Skeleton 기능을 이용해 `ProductLiSkeleton`으로 구현했습니다.
+```tsx
+...
+const ProductLiSkeleton = () => {
+  return (
+    ...
+      {[...Array(10)].map((_, key) => (
+        <Card
+          key={key}
+          maxW='20rem'
+          p='2rem 1rem'
+          display='flex'
+          flexDir='column'
+          gap='2rem'
+          justifyContent='space-between'
+          cursor='pointer'
+        >
+          <Box display='flex' flexDir='column' alignItems='start' gap='1rem'>
+            <Skeleton width='80%' height='2rem' />
+            <SkeletonText fontSize='2xl' width='100%' />
+            <Skeleton width='5rem' height='1rem' />
+          </Box>
+
+          <AspectRatio ratio={1 / 1} width='100%'>
+            <Skeleton width='100%' height='100%' rounded='xl' />
+          </AspectRatio>
+
+          <Skeleton width='6rem' height='2rem' />
+        </Card>
+      ))}
+  ...
+```
+- `ProductLiSkeleton`을 `Suspense fallback`으로 연결
+```tsx
+export const MainPage = () => {
+  ...
+
+  return (
+    <>
+    ...
+      <Suspense fallback={<ProductLiSkeleton />}>
+        <ProductList filterFunction={filterFunction} />
+      </Suspense>
+    </>
+  );
+};
+```
+
+
+### 2. 장바구니 기능구현에 `Context API` 사용
+장바구니 기능이 여러개의 페이지에서 사용함을 생각해서 Context API 로 장바구니 변수, 기능을 전역 컴포넌트에서도 사용할 수 있게했습니다.
+```tsx
+export const CartContext = createContext<CartContextType>(initialCartContext);
+
+const CART_KEY = 'cart';
+
+const initialCart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+
+const persistCart = (cart: CartItem[]) => {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+};
+
+export const CartProvider = (props: React.PropsWithChildren) => {
+  const [cart, updateCart] = useState<CartItem[]>(initialCart);
+
+  const addToCart = (newProduct: number, price: number) => {
+  ...
+  return (
+    <CartContext.Provider value={contextValue}>
+      {props.children}
+    </CartContext.Provider>
+  );
+};
+
+export const useCart = () => useContext(CartContext);
+
+```
+- `useCart`의 `addToCart` 사용 예시
+```tsx
+import { useCart } from '@src/context/cart';
+...
+const Product = ({ product }: Props) => {
+...
+  const { addToCart } = useCart();
+...
+const handleReservationClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    addToCart(idx, price);
+    showReservationSuccess();
+    e.stopPropagation();
+  };
+...
+  return(
+...
+      <Button
+...
+      onClick={handleReservationClick}
+    >
+      예약
+    </Button>
+ ...
+
+```
+### 3. UI/UX
+본 과제에서 사용자에게 가장 적합한 UI 를 고민해 보았을 때 아래와 같이 선정하였습니다.
+
+**지역필터**
+- 사용자가 간편하게 지역을 넣고 뺄 수 있도록 토글버튼을 선택했습니다.
+
+**가격필터**
+- 사용자가 다양한 가격옵션을 편리하게 설정할 수 있도록 `Range Slider`를 선택했습니다.
+
+**행동에 대한 피드백**
+- `toast` 를 
+- 주요 행동이 실제로 동작했다는 피드백을 주기 위해서
+- 예약 시 성공같은 경우의 서비스 안내멘트들을 `alert` 나 `modal` 을 사용해 보여줄 경우 사용성이 방해될 것을 우려해 `toast` 로 띄우게 했습니다.
+
+### 4. 반응형 디자인 적용
+- 
+
+### 5. `Git` 협업
+코드 구현은 아니지만 `Git` 관리에 부족한 팀원이 다수였습니다. 팀원 중 사전과제에 git 관리를 잘해주신 분이 계셔서 `Best Practice` 삼아 도입하였습니다.
 - Issue 작성
 - Branch, commit 컨벤션
 - [PR에 issue 연계](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword)
 
-### 2. `useQuery` (api query custom hook 개발)
-- `useQuery custom hook`을 개발하여 query를 간편하게 날릴 수 있도록 했습니다.
-- 채택 사유
-  - 매개변수에 method 와 url만 넣어도 api 호출이 되기에 **코드의 통일성과 협업속도**에 큰 도움이 된다 생각했습니다.
-  - 공통 에러 핸들링이 되어있어서 에러핸들링 수정 시 useQuery 만 수정해주면 되기에 **유지/ 보수**에 좋았습니다.
-
-```tsx
-// 참고 파일 - src/hooks/useQuery.tsx
-import API from 'api'
-...
-
-interface Props<T> {
-  url: string
-  method: Method
-  onSuccess?: (data: T) => void | Promise<void>
-  onFailure?: (e: unknown) => void | Promise<void>
-  successMessage?: string
-  errors?: ErrorsType | string
-}
-
-export const useQuery = <T,>({
-  url,
-  method,
-  onSuccess,
-  onFailure,
-  successMessage,
-  errors,
-}: Props<T>) => {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [data, setData] = useState<T | null>(null)
-
-  const query = useCallback(
-    async <Body,>(body?: Body) => {
-      setIsLoading(true)
-
-      try {
-        const { data } = await API({
-          url,
-          method,
-          data: body,
-        })
-
-        if (successMessage) alert(successMessage)
-
-        setData(data)
-        if (onSuccess) await onSuccess(data)
-      } catch (e) {
-        // 공통 에러 핸들링
-        if (!isAxiosError(e)) return alert('알 수 없는 에러가 발생했습니다')
-
-        if (e.response && e.response.status >= 500) {
-          alert('알 수 없는 에러가 발생했습니다')
-        } else if (typeof errors === 'string') {
-          alert(errors)
-        } else if (errors && e.response && errors[e.response.status]) {
-          alert(errors[e.response.status])
-        }
-
-        if (onFailure) await onFailure(e)
-      } finally {
-        setIsLoading(false)
-      }
-    },
-    [url, method, onSuccess, onFailure, successMessage, errors]
-  )
-
-  return { query, isLoading, data }
-}
-```
-- `useQuery` 실 사용 코드
-```ts
-// 참고 파일 - src/pages/Todo/todo.tsx
-  ...
-  const { query: createTodo } = useQuery({
-    method: 'post',
-    url: `/todos`,
-    onSuccess: () => { // 성공시 실행
-      console.log('성공')
-    },
-    onFailure: () => { // 실패시 실행
-      console.log('실패')
-    },
-    successMessage: '성공~', // 성공시 alert로 띄워질 메시지
-    errors: {
-      401: '권한이 없습니다', // 실패시 특정 status code에서 alert로 띄워질 메시지
-    },
-  })
-  ...
-  const handleSubmit = async () => {
-  await createTodo({ todo: todoText })
-  await getTodo()
-  }
-  ...
-```
-### 3. `Context API` 사용
-- `Context API` 를 사용해 Todo 리스트와 get 함수를 Todo페이지 내 상태관리 해주었습니다.
-- 채택사유
-  - Todo 페이지에서 post, put, delet 이후 get 을 다시 해줘야 해서 여러 컴포넌트에서 Todo 리스트와 get 함수를 필요하게 되었습니다.
-  - Prop Drilling 을 막기 위해서 todo 배열과 getTodo 함수를 Context API 를 사용해 상태관리 해주었습니다.
-```ts
-// 참고 파일 - src/context/TodoContext/tsx
-import { createContext, Dispatch, SetStateAction } from 'react'
-import { ITodo } from 'types/ITodo'
-
-export const TodoContext = createContext<{
-  todoData: ITodo[]
-  setTodoData: Dispatch<SetStateAction<ITodo[]>>
-  getTodo: () => Promise<void>
-}>({
-  todoData: [],
-  setTodoData: () => {
-    return
-  },
-  getTodo: async () => {
-    return
-  },
-})
-```
-- Todo페이지 내 사용을 위한 Provider 감싸주기
-```ts
-// 참고 파일 - src/pages/Todo/index.tsx
-import { TodoContext } from 'context/TodoContext'
-...
-export const TodoPage = () => {
-  const [todoData, setTodoData] = useState<any>([])
-
-  //todo 불러오기
-  const { query: getTodo, data } = useQuery({
-    url: `/todos`,
-    method: 'get',
-  })
-...
-  return (
-    <TodoContext.Provider value={{ todoData, setTodoData, getTodo }}>
-      <Wrapper>
-        <Todo />
-      </Wrapper>
-    </TodoContext.Provider>
-  )
-}
-```
-- 실 사용
-```ts
-// 참고 파일 -src/pages/Todo/todo.tsx
-...
-export const Todo = () => {
-  const { todoData, getTodo } = useContext(TodoContext)
-  ...
-  }
-```
 ## 👾 코드 컨벤션
 ### commit message
 
